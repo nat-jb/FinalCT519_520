@@ -63,10 +63,19 @@ services:
     <footer>
         <p>&copy; 2024 สรุปการใช้งาน Docker Compose และ Cloud Services</p>
     </footer>
-
+<!--
 <p>เพจนี้ทำงานบนเซิร์ฟเวอร์: <span id="server-info"></span></p>
     <script>
         fetch('/')
+            .then(response => {
+                const serverName = response.headers.get('X-Server-Name');
+                document.getElementById('server-info').textContent = serverName || 'ไม่สามารถดึงข้อมูลได้';
+            });
+    </script>
+    -->
+ <p>เพจนี้ทำงานบนเซิร์ฟเวอร์: <span id="server-info"></span></p>
+    <script>
+        fetch(window.location.href)
             .then(response => {
                 const serverName = response.headers.get('X-Server-Name');
                 document.getElementById('server-info').textContent = serverName || 'ไม่สามารถดึงข้อมูลได้';
