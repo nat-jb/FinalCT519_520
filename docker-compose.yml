@@ -1,0 +1,52 @@
+services:
+  reverse_proxy:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt:/etc/letsencrypt  # Mount ไฟล์ SSL certificates
+    networks:
+      - frontend
+      - backend
+
+        #web_server1:
+        #build: ./CT519_Assignment3/CT519_Assignment2
+        #networks:
+        #- backend
+
+  web_server1:
+    image: nginx:alpine
+    networks:
+      - backend
+    ports:
+        - "8001:80"
+    volumes:
+      - ./CT519_Assignment3/web1/html:/usr/share/nginx/html
+
+  web_server2:
+    image: nginx:alpine
+    networks:
+      - backend
+    ports:
+        - "8002:80"
+    volumes:
+      - ./CT519_Assignment3/web2/html:/usr/share/nginx/html
+
+  web_server3:
+    image: nginx:alpine
+    networks:
+      - backend
+    ports:
+        - "8003:80"
+    volumes:
+      - ./CT519_Assignment3/web3/html:/usr/share/nginx/html
+
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+

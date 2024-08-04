@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แนวทางการวิจัย</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>แนวทางการวิจัยของฉัน</h1>
+    </header>
+    <main>
+        <section id="research-topics">
+            <h2>หัวข้อการวิจัย</h2>
+            <article>
+                <h3>หัวข้อที่ 1: การตรวจจับวัตถุด้วย Machine Learning</h3>
+                <p>การตรวจจับวัตถุ (Object Detection) เป็นหนึ่งในงานสำคัญของการเรียนรู้ของเครื่อง (Machine Learning) โดยมีวัตถุประสงค์เพื่อระบุและจำแนกวัตถุต่าง ๆ ภายในภาพหรือวิดีโอ งานวิจัยนี้มีการนำไปใช้ในหลาย ๆ ด้าน เช่น การตรวจจับใบหน้า การจราจร การตรวจสอบสินค้า ฯลฯ</p>
+                <p>การตรวจจับวัตถุสามารถแบ่งเป็นสองส่วนหลักคือ การตรวจจับ (Detection) และการจำแนก (Classification) โดยใช้เทคนิคต่าง ๆ เช่น YOLO, SSD, และ Faster R-CNN</p>
+                <img src="images/x1.png" alt="การตรวจจับวัตถุด้วย Machine Learning">
+		<img src="images/x2.png" alt="การตรวจจับวัตถุด้วย Machine Learning">
+            </article>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 แนวทางการวิจัยของฉัน</p>
+    </footer>
+
+    <p>เพจนี้ทำงานบนเซิร์ฟเวอร์: <span id="server-info"></span></p>
+    <script>
+        fetch('/')
+            .then(response => {
+                const serverName = response.headers.get('X-Server-Name');
+                document.getElementById('server-info').textContent = serverName || 'ไม่สามารถดึงข้อมูลได้';
+            });
+    </script>
+
+
+</body>
+</html>
+

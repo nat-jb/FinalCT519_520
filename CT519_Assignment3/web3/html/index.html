@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สรุปการใช้งาน Docker Compose และ Cloud Services</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>สรุปการใช้งาน Docker Compose และ Cloud Services</h1>
+    </header>
+    <main>
+        <section id="docker-compose">
+            <h2>Docker Compose</h2>
+            <p>Docker Compose เป็นเครื่องมือที่ช่วยในการจัดการและรันหลายคอนเทนเนอร์ Docker พร้อมกันด้วยการใช้ไฟล์การตั้งค่า YAML คุณสามารถกำหนดบริการ เครือข่าย และโวลุ่มต่าง ๆ ในไฟล์เดียว และใช้คำสั่ง `docker-compose` เพื่อบริหารจัดการคอนเทนเนอร์ต่าง ๆ ได้ง่ายขึ้น</p>
+            <h3>การติดตั้ง Docker Compose</h3>
+            <p>การติดตั้ง Docker Compose สามารถทำได้ง่าย ๆ ด้วยคำสั่ง:</p>
+            <pre><code>sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version</code></pre>
+            <h3>การใช้งาน Docker Compose</h3>
+            <h4>ตัวอย่างไฟล์ docker-compose.yml</h4>
+            <pre><code>version: '3'
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./web:/usr/share/nginx/html
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_DB: example
+      POSTGRES_USER: example
+      POSTGRES_PASSWORD: example</code></pre>
+            <p>คำสั่งที่ใช้ในการบริหารจัดการ Docker Compose:</p>
+            <ul>
+                <li><code>docker-compose up</code> - สร้างและเริ่มต้นคอนเทนเนอร์</li>
+                <li><code>docker-compose down</code> - หยุดและลบคอนเทนเนอร์</li>
+                <li><code>docker-compose ps</code> - แสดงสถานะของคอนเทนเนอร์</li>
+                <li><code>docker-compose logs</code> - ดูล็อกของคอนเทนเนอร์</li>
+            </ul>
+        </section>
+
+        <section id="cloud-services">
+            <h2>Cloud Services</h2>
+            <p>Cloud Services เป็นการให้บริการระบบคอมพิวเตอร์ผ่านอินเทอร์เน็ต โดยสามารถเข้าถึงได้จากที่ใดก็ได้ ทำให้การบริหารจัดการทรัพยากรต่าง ๆ ง่ายขึ้น มีความยืดหยุ่นสูง และสามารถปรับขนาดได้ตามต้องการ</p>
+            <h3>บริการ Cloud ที่นิยมใช้</h3>
+            <ul>
+                <li><strong>Amazon Web Services (AWS)</strong>: บริการคลาวด์จาก Amazon ที่มีบริการหลากหลาย เช่น EC2, S3, RDS</li>
+                <li><strong>Google Cloud Platform (GCP)</strong>: บริการคลาวด์จาก Google ที่เน้นการประมวลผลที่รวดเร็วและมีบริการหลายประเภท เช่น Compute Engine, Cloud Storage, BigQuery</li>
+                <li><strong>Microsoft Azure</strong>: บริการคลาวด์จาก Microsoft ที่มีบริการหลากหลายและผสมผสานกับผลิตภัณฑ์อื่น ๆ ของ Microsoft ได้อย่างดี เช่น Virtual Machines, Azure Blob Storage, Azure SQL Database</li>
+            </ul>
+            <h3>การใช้งาน Cloud Services</h3>
+            <p>การใช้งาน Cloud Services สามารถทำได้หลากหลายวิธี ขึ้นอยู่กับบริการที่คุณเลือกใช้งาน ตัวอย่างเช่น:</p>
+            <h4>การใช้งาน EC2 บน AWS</h4>
+            <p>EC2 (Elastic Compute Cloud) เป็นบริการเครื่องเสมือน (Virtual Machine) ที่สามารถใช้ในการรันแอปพลิเคชันต่าง ๆ โดยคุณสามารถสร้างและบริหารจัดการเครื่อง EC2 ผ่าน AWS Management Console หรือใช้ AWS CLI (Command Line Interface)</p>
+            <pre><code>aws ec2 run-instances --image-id ami-0abcdef1234567890 --count 1 --instance-type t2.micro --key-name MyKeyPair --security-groups my-sg</code></pre>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 สรุปการใช้งาน Docker Compose และ Cloud Services</p>
+    </footer>
+
+<p>เพจนี้ทำงานบนเซิร์ฟเวอร์: <span id="server-info"></span></p>
+    <script>
+        fetch('/')
+            .then(response => {
+                const serverName = response.headers.get('X-Server-Name');
+                document.getElementById('server-info').textContent = serverName || 'ไม่สามารถดึงข้อมูลได้';
+            });
+    </script>
+
+
+</body>
+</html>
+
